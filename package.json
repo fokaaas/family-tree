@@ -1,0 +1,24 @@
+{
+  "name": "family-tree",
+  "version": "1.0.0",
+  "description": "A console application for creating and managing family trees. Coursework.",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basarabst/family-tree.git"
+  },
+  "keywords": [
+    "family",
+    "tree",
+    "genealogy"
+  ],
+  "author": "Stanislav Basarab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basarabst/family-tree/issues"
+  },
+  "homepage": "https://github.com/basarabst/family-tree#readme"
+}
