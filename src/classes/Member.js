@@ -11,6 +11,8 @@ class Member {
     };
     this.events = { [birth]: ['Birth'] };
     this.connections = {};
+    this.contacts = {};
+
   }
 
   rename(fullName) {
@@ -37,5 +39,13 @@ class Member {
       }
     }
     throw new Error('The specified person was not found.');
+  }
+
+  addContact(type, contact) {
+    this.contacts[type] = contact;
+  }
+
+  describe(content) {
+    this.description = content;
   }
 }
