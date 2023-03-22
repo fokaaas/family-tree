@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/basarabst/family-tree/issues"
   },
-  "homepage": "https://github.com/basarabst/family-tree#readme"
+  "homepage": "https://github.com/basarabst/family-tree#readme",
+  "devDependencies": {
+    "eslint": "^8.36.0"
+  }
 }
