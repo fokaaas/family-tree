@@ -12,7 +12,6 @@ class Member {
     this.events = { [birth]: ['Birth'] };
     this.connections = {};
     this.contacts = {};
-
   }
 
   rename(fullName) {
@@ -49,3 +48,5 @@ class Member {
     this.description = content;
   }
 }
+
+module.exports = { Member };
