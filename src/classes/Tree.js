@@ -9,6 +9,10 @@ class Tree {
     this.members = [ root ];
   }
 
+  rename(name) {
+    this.name = name;
+  }
+
   addMember(fullName, birth) {
     const names = fullName.split(' ');
     const member = new Member(...names, birth);
@@ -27,4 +31,17 @@ class Tree {
     }
     throw new Error('The specified person was not found.');
   }
+
+  changeRoot(fullName) {
+    const [first, last] = fullName.split(' ');
+    for (const member of this.members) {
+      if (member.name.first === first && member.name.last === last) {
+        this.root = member;
+        return;
+      }
+    }
+    throw new Error('Add a person to the tree to change the root.');
+  }
 }
+
+module.exports({ Tree });

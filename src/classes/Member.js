@@ -3,14 +3,12 @@
 const generateID = () => Math.floor(Math.random() * 1000000);
 
 class Member {
-  constructor(firstName, lastName, birth) {
+  constructor(fullName, birth) {
+    const [ first, last ] = fullName.slice(' ');
     this.id = generateID();
-    this.name = {
-      first: firstName,
-      last: lastName
-    };
+    this.name = { first, last };
     this.events = { [birth]: ['Birth'] };
-    this.connections = {};
+    this.relations = {};
     this.contacts = {};
   }
 
@@ -27,13 +25,13 @@ class Member {
     this.events[year].push(description);
   }
 
-  connect(type, fullName, members) {
+  relate(type, fullName, members) {
     const [ firstName, lastName ] = fullName.split(' ');
     for (const member of members) {
       const { first, last } = member.name;
       if (firstName === first && lastName === last) {
         const { id } = member;
-        this.connections[type] = id;
+        this.relations[type] = id;
         return;
       }
     }
