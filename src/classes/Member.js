@@ -4,7 +4,7 @@ const generateID = () => Math.floor(Math.random() * 1000000);
 
 class Member {
   constructor(fullName, birth) {
-    const [ first, last ] = fullName.slice(' ');
+    const [ first, last ] = fullName.split(' ');
     this.id = generateID();
     this.name = { first, last };
     this.events = { [birth]: ['Birth'] };
