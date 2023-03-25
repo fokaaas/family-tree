@@ -9,6 +9,12 @@ class Tree {
     this.members = [ root ];
   }
 
+  static create(name, rootName, rootBirth) {
+    const root = new Member(rootName, rootBirth);
+    const tree = new Tree(name, root);
+    return tree;
+  }
+
   rename(name) {
     this.name = name;
   }
