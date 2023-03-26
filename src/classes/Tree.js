@@ -15,17 +15,26 @@ class Tree {
     return tree;
   }
 
+  isRoot(criterion) {
+    const { root } = this;
+    if (Number.isInteger(criterion)) return criterion === root.id;
+    const full = root.name.first + ' ' + root.name.last;
+    return criterion === full;
+  }
+
   rename(name) {
     this.name = name;
   }
 
   addMember(fullName, birth) {
-    const names = fullName.split(' ');
-    const member = new Member(...names, birth);
+    const member = new Member(fullName, birth);
     this.members.push(member);
   }
 
   removeMember(fullName) {
+    if (this.isRoot(fullName)) {
+      throw new Error('You cannot remove the root of a tree.');
+    }
     const [first, last] = fullName.split(' ');
     const { members } = this;
     for (let i = 0; i < members.length; i++) {
