@@ -13,6 +13,7 @@ const rl = readlinePromises.createInterface({
 const state = { level: 'common' };
 
 const commands = {
+
   common: {
     async create() {
       const name = await rl.question('Enter a name for your tree: ');
@@ -20,8 +21,24 @@ const commands = {
       const rootBirth = await rl.question('Enter the root\'s year of birth: ');
       state.tree = Tree.create(name, rootName, rootBirth);
       state.level = level.down(state.level);
-    }
-  }
+    },
+  },
+
+  tree: {
+    async add() {
+      const name = await rl.question('Enter a family member\'s name: ');
+      const birth = await rl.question('Enter the family member\'s year of birth: ');
+      const tree = state.tree;
+      tree.addMember(name, birth);
+    },
+    async remove() {
+      const name = await rl.question('Enter a family member\'s name: ');
+      const tree = state.tree;
+      tree.removeMember(name);
+      console.log(state.tree);
+    },
+  },
+
 };
 
 const activate = (name) => {
