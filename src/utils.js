@@ -2,14 +2,15 @@
 
 const LEVELS = ['common', 'tree', 'member'];
 
-const levelUp = (curr) => {
-  const i = LEVELS.indexOf(curr);
-  return LEVELS[i - 1];
+const level = {
+  up(curr) {
+    const i = LEVELS.indexOf(curr);
+    return LEVELS[i - 1];
+  },
+  down(curr) {
+    const i = LEVELS.indexOf(curr);
+    return LEVELS[i + 1];
+  }
 };
 
-const levelDown = (curr) => {
-  const i = LEVELS.indexOf(curr);
-  return LEVELS[i + 1];
-};
-
-module.exports = [ levelUp, levelDown ];
+module.exports = [ level ];

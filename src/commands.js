@@ -1,7 +1,7 @@
 'use strict';
 
 const readlinePromises = require('node:readline/promises');
-const [ levelUp, levelDown ] = require('./utils');
+const [ level ] = require('./utils');
 const { Tree } = require('./classes/Tree.js');
 
 const rl = readlinePromises.createInterface({
@@ -19,7 +19,7 @@ const commands = {
       const rootName = await rl.question('Enter the name of root person: ');
       const rootBirth = await rl.question('Enter the root\'s year of birth: ');
       state.tree = Tree.create(name, rootName, rootBirth);
-      state.level = levelDown(state.level);
+      state.level = level.down(state.level);
     }
   }
 };
