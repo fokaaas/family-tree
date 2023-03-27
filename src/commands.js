@@ -7,7 +7,7 @@ const { Tree } = require('./classes/Tree.js');
 const rl = readlinePromises.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: '>',
+  prompt: '> ',
 });
 
 const state = { level: 'common' };
@@ -39,8 +39,7 @@ const commands = {
     async member() {
       const name = await rl.question('Enter a family member\'s name: ');
       const tree = state.tree;
-      const id = tree.getId(name);
-      state.member = id;
+      state.member = tree.member(name);
       state.level = level.down(state.level);
     }
   },
