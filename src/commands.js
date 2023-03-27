@@ -20,7 +20,7 @@ const commands = {
       const rootName = await rl.question('Enter the name of root person: ');
       const rootBirth = await rl.question('Enter the root\'s year of birth: ');
       state.tree = Tree.create(name, rootName, rootBirth);
-      state.level = level.down(state.level);
+      state.level = level.down(rl, state);
     },
   },
 
@@ -40,7 +40,7 @@ const commands = {
       const name = await rl.question('Enter a family member\'s name: ');
       const tree = state.tree;
       state.member = tree.member(name);
-      state.level = level.down(state.level);
+      state.level = level.down(rl, state);
     }
   },
 
