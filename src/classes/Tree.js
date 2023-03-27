@@ -22,6 +22,16 @@ class Tree {
     return criterion === full;
   }
 
+  getId(fullName) {
+    const [first, last] = fullName.split(' ');
+    for (const member of this.members) {
+      if (member.name.first === first && member.name.last === last) {
+        return member.id;
+      }
+    }
+    throw new Error('The specified person was not found.');
+  }
+
   rename(name) {
     this.name = name;
   }

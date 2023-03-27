@@ -35,9 +35,19 @@ const commands = {
       const name = await rl.question('Enter a family member\'s name: ');
       const tree = state.tree;
       tree.removeMember(name);
-      console.log(state.tree);
     },
+    async member() {
+      const name = await rl.question('Enter a family member\'s name: ');
+      const tree = state.tree;
+      const id = tree.getId(name);
+      state.member = id;
+      state.level = level.down(state.level);
+    }
   },
+
+  member: {
+
+  }
 
 };
 
