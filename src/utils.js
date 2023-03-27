@@ -7,6 +7,7 @@ const levels = [
 ];
 
 const level = {
+
   up(rl, state) {
     const tree = state.tree;
     for (let i = 0; i < levels.length; i++) {
@@ -15,10 +16,12 @@ const level = {
         const prev = levels[i - 1];
         const pattern = prev.pattern(tree.name);
         rl.setPrompt(pattern);
+        rl.prompt();
         return prev.name;
       }
     }
   },
+
   down(rl, state) {
     const tree = state.tree;
     const person = state.member;
@@ -29,10 +32,12 @@ const level = {
         const next = levels[i + 1];
         const pattern = next.pattern(tree.name, name);
         rl.setPrompt(pattern);
+        rl.prompt();
         return next.name;
       }
     }
   }
+
 };
 
 module.exports = [ level ];

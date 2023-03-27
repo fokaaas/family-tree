@@ -2,6 +2,8 @@
 
 const { rl, activate } = require('./commands.js');
 
+rl.prompt();
+
 rl.on('line', (command) => {
   try {
     activate(command);
