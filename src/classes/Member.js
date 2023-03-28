@@ -12,8 +12,8 @@ class Member {
     this.contacts = {};
   }
 
-  rename(fullName) {
-    [ this.name.first, this.name.last ] = fullName.split(' ');
+  addContact(type, contact) {
+    this.contacts[type] = contact;
   }
 
   addEvent(year, description) {
@@ -23,6 +23,10 @@ class Member {
       return;
     }
     this.events[year].push(description);
+  }
+
+  describe(content) {
+    this.description = content;
   }
 
   relate(type, fullName, members) {
@@ -38,12 +42,9 @@ class Member {
     throw new Error('The specified person was not found.');
   }
 
-  addContact(type, contact) {
-    this.contacts[type] = contact;
-  }
-
-  describe(content) {
-    this.description = content;
+  rename(fullName) {
+    const name = this.name;
+    [ name.first, name.last ] = fullName.split(' ');
   }
 }
 
