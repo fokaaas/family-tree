@@ -32,18 +32,30 @@ const commands = {
       tree.addMember(name, birth);
       rl.prompt();
     },
+    async member() {
+      const name = await rl.question('Enter a family member\'s full name: ');
+      const tree = state.tree;
+      state.member = tree.member(name);
+      state.level = level.down(rl, state);
+    },
     async remove() {
       const name = await rl.question('Enter a family member\'s full name: ');
       const tree = state.tree;
       tree.removeMember(name);
       rl.prompt();
     },
-    async member() {
-      const name = await rl.question('Enter a family member\'s full name: ');
+    async rename() {
+      const name = await rl.question('New tree name: ');
       const tree = state.tree;
-      state.member = tree.member(name);
-      state.level = level.down(rl, state);
-    }
+      tree.rename(name);
+      rl.prompt();
+    },
+    async root() {
+      const name = await rl.question('Full name of the new root: ');
+      const tree = state.tree;
+      tree.changeRoot(name);
+      rl.prompt();
+    },
   },
 
   member: {
@@ -53,7 +65,7 @@ const commands = {
 };
 
 const activate = (name) => {
-  const current =  commands[state.level];
+  const current = commands[state.level];
   current[name]();
 };
 
