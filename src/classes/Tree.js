@@ -10,8 +10,9 @@ class Tree {
   }
 
   addMember(fullName, birth) {
+    const members = this.members;
     const member = new Member(fullName, birth);
-    this.members.push(member);
+    members.push(member);
   }
 
   changeRoot(fullName) {
@@ -35,7 +36,8 @@ class Tree {
   member(fullName) {
     const [first, last] = fullName.split(' ');
     for (const member of this.members) {
-      if (member.name.first === first && member.name.last === last) {
+      const name = member.name;
+      if (name.first === first && name.last === last) {
         return member;
       }
     }
@@ -54,8 +56,9 @@ class Tree {
     const { members } = this;
     for (let i = 0; i < members.length; i++) {
       const member = members[i];
-      if (member.name.first === first && member.name.last === last) {
-        this.members.splice(i, 1);
+      const name = member.name;
+      if (name.first === first && name.last === last) {
+        members.splice(i, 1);
         return;
       }
     }

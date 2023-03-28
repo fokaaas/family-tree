@@ -1,11 +1,11 @@
 'use strict';
 
-const generateID = () => Math.floor(Math.random() * 1000000);
+const generateId = () => Math.floor(Math.random() * 1000000);
 
 class Member {
   constructor(fullName, birth) {
     const [ first, last ] = fullName.split(' ');
-    this.id = generateID();
+    this.id = generateId();
     this.name = { first, last };
     this.events = { [birth]: ['Birth'] };
     this.relations = {};
@@ -13,16 +13,17 @@ class Member {
   }
 
   addContact(type, contact) {
-    this.contacts[type] = contact;
+    const contacts = this.contacts;
+    contacts[type] = contact;
   }
 
   addEvent(year, description) {
+    const events = this.events;
     if (!Object.hasOwn(this.events, year)) {
-      const box = [description];
-      this.events[year] = box;
+      events[year] = [description];
       return;
     }
-    this.events[year].push(description);
+    events[year].push(description);
   }
 
   describe(content) {
