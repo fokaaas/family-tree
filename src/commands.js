@@ -59,8 +59,27 @@ const commands = {
   },
 
   member: {
-
-  }
+    async contact() {
+      const type = await rl.question('Contact type: ');
+      const contact = await rl.question('Contact: ');
+      const member = state.member;
+      member.addContact(type, contact);
+      rl.prompt();
+    },
+    async evenet() {
+      const year = await rl.question('The year of the event: ');
+      const event = await rl.question('Description of the event: ');
+      const member = state.member;
+      member.addEvent(year, event);
+      rl.prompt();
+    },
+    async describe() {
+      const text = await rl.question('Description: ');
+      const member = state.member;
+      member.describe(text);
+      rl.prompt();
+    },
+  },
 
 };
 
