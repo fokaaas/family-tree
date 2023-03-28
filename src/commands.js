@@ -79,6 +79,20 @@ const commands = {
       member.describe(text);
       rl.prompt();
     },
+    async relate() {
+      const name = await rl.question('The name of the relative: ');
+      const curr = state.member;
+      const tree = state.tree;
+      const relative = tree.member(name);
+      const relToCurr = await rl
+        .question(`The type of relation that ${name} have with current person: `);
+      const relFromCurr = await rl
+        .question(`The type of relation that current person have with ${name}: `);
+      curr.relate(relToCurr, relative);
+      relative.relate(relFromCurr, curr);
+      console.dir(tree);
+      rl.prompt();
+    },
   },
 
 };

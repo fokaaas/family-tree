@@ -29,17 +29,18 @@ class Member {
     this.description = content;
   }
 
-  relate(type, fullName, members) {
-    const [ firstName, lastName ] = fullName.split(' ');
-    for (const member of members) {
-      const { first, last } = member.name;
-      if (firstName === first && lastName === last) {
-        const { id } = member;
-        this.relations[type] = id;
+  relate(type, relative) {
+    const relations = this.relations;
+    const rx = /(brother)|(sister)/i;
+    if (rx.test(type)) {
+      if (!relations.siblings) {
+        relations.siblings = [relative];
         return;
       }
+      relations.siblings.push(relative);
+      return;
     }
-    throw new Error('The specified person was not found.');
+    relations[type] = relative;
   }
 
   rename(fullName) {
