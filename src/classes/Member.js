@@ -32,8 +32,7 @@ class Member {
 
   relate(type, relative) {
     const relations = this.relations;
-    const rx = /(brother)|(sister)/i;
-    if (rx.test(type)) {
+    if (type === 'brother' || type === 'sister') {
       if (!relations.siblings) {
         relations.siblings = [relative];
         return;

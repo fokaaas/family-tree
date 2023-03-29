@@ -1,7 +1,7 @@
 'use strict';
 
 const readlinePromises = require('node:readline/promises');
-const [ level ] = require('./utils/functions.js');
+const [ level, logRelation ] = require('./utils/functions.js');
 const { Tree } = require('./classes/Tree.js');
 
 const rl = readlinePromises.createInterface({
@@ -90,15 +90,15 @@ const commands = {
     },
     async relate() {
       const name = await rl.question('The full name of the relative: ');
-      const curr = state.member;
-      const tree = state.tree;
-      const relative = tree.member(name);
-      const relToCurr = await rl
-        .question(`The type of relation that ${name} has with current person: `);
-      const relFromCurr = await rl
-        .question(`The type of relation that current person has with ${name}: `);
-      curr.relate(relToCurr, relative);
-      relative.relate(relFromCurr, curr);
+      const type = logRelation();
+      const relative = state.tree.member(name);
+      const to = await rl
+        .question(`The num of relation that ${name} has with current person: `);
+      const from = await rl
+        .question(`The num of relation that current person has with ${name}: `);
+      state.member.relate(type(to), relative);
+      relative.relate(type(from), state.member);
+      console.log(state.tree);
       rl.prompt();
     },
   },
