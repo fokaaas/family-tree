@@ -72,7 +72,7 @@ const commands = {
       member.addContact(type, contact);
       rl.prompt();
     },
-    async evenet() {
+    async event() {
       const year = await rl.question('The year of the event: ');
       const event = await rl.question('Description of the event: ');
       const member = state.member;
@@ -98,7 +98,6 @@ const commands = {
         .question(`The num of relation that current person has with ${name}: `);
       state.member.relate(type(to), relative);
       relative.relate(type(from), state.member);
-      console.log(state.tree);
       rl.prompt();
     },
   },
