@@ -6,4 +6,17 @@ const LEVELS = [
   { name: 'member', pattern: (tree, person) => `${tree} (${person})> ` },
 ];
 
-module.exports = { LEVELS };
+const RELATIONS = [
+  'mother',
+  'father',
+  'son',
+  'daughter',
+  'brother',
+  'sister',
+  'grandfather',
+  'grandmother',
+  'uncle',
+  'aunt',
+];
+
+module.exports = { LEVELS, RELATIONS };
