@@ -1,7 +1,7 @@
 'use strict';
 
 const readlinePromises = require('node:readline/promises');
-const [ level ] = require('./utils');
+const [ level ] = require('./utils/functions.js');
 const { Tree } = require('./classes/Tree.js');
 
 const rl = readlinePromises.createInterface({
