@@ -1,6 +1,6 @@
 'use strict';
 
-const { LEVELS } = require('./collections.js');
+const { LEVELS, RELATIONS } = require('./collections.js');
 
 const level = {
 
@@ -36,4 +36,12 @@ const level = {
 
 };
 
-module.exports = [ level ];
+const logRelation = () => {
+  RELATIONS.map((relation, i) => {
+    const row = `${i}: ${relation}`;
+    console.log(row);
+  });
+  return (i) => RELATIONS[i];
+};
+
+module.exports = [ level, logRelation ];
