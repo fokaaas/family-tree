@@ -56,6 +56,23 @@ class Member {
     const name = this.name;
     [ name.first, name.last ] = fullName.split(' ');
   }
+
+  showEvents() {
+    const info = this.commonInfo();
+    const table = [...info];
+    let i = 0;
+    for (const year in this.events) {
+      if (!table[i]) table.push({});
+      const events = this.events[year].join(', ');
+      const row = year + ': ' + events;
+      table[i].Events = row;
+      i++;
+      if (i === Object.keys(this.events).length) {
+        console.table(table);
+        return;
+      }
+    }
+  }
 }
 
 module.exports = { Member };
