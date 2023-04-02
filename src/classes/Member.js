@@ -62,6 +62,24 @@ class Member {
     [ name.first, name.last ] = fullName.split(' ');
   }
 
+  showContacts() {
+    if (!this.checker(this.contacts, 'contacts')) return;
+    const info = this.commonInfo();
+    const table = [...info];
+    let i = 0;
+    for (const type in this.contacts) {
+      if (!table[i]) table.push({});
+      const contact = this.contacts[type];
+      const row = type + ': ' + contact;
+      table[i].Contacts = row;
+      i++;
+      if (i === Object.keys(this.events).length) {
+        console.table(table);
+        return;
+      }
+    }
+  }
+
   showEvents() {
     const info = this.commonInfo();
     const table = [...info];
