@@ -80,6 +80,17 @@ class Member {
     }
   }
 
+  showDescription() {
+    if (!this.description) {
+      console.log('No description were found');
+      return;
+    }
+    const info = this.commonInfo();
+    const table = [...info];
+    table[0].Description = this.description;
+    console.table(table);
+  }
+
   showEvents() {
     const info = this.commonInfo();
     const table = [...info];
