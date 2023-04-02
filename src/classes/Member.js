@@ -73,6 +73,24 @@ class Member {
       }
     }
   }
+
+  showRelations() {
+    const info = this.commonInfo();
+    const table = [...info];
+    let i = 0;
+    for (const relative in this.relations) {
+      if (!table[i]) table.push({});
+      const member = this.relations[relative];
+      const name = member.name.first + ' ' + member.name.last;
+      const row = relative + ' ' + name;
+      table[i].Relations = row;
+      i++;
+      if (i === Object.keys(this.relations).length) {
+        console.table(table);
+        return;
+      }
+    }
+  }
 }
 
 module.exports = { Member };
