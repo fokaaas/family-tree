@@ -26,6 +26,15 @@ class Member {
     events[year].push(description);
   }
 
+  commonInfo() {
+    const table = [{}, {}];
+    const header = 'Full Name / ID';
+    const name = this.name;
+    table[0][header] = name.first + ' ' + name.last;
+    table[1][header] = this.id;
+    return table;
+  }
+
   describe(content) {
     this.description = content;
   }
