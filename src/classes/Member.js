@@ -81,9 +81,11 @@ class Member {
     for (const relative in this.relations) {
       if (!table[i]) table.push({});
       const member = this.relations[relative];
-      const name = member.name.first + ' ' + member.name.last;
-      const row = relative + ' ' + name;
-      table[i].Relations = row;
+      const name = relative === 'siblings' ?
+        member.map((person) => person.name.first + ' ' + person.name.last)
+          .join(', ') :
+        member.name.first + ' ' + member.name.last;
+      table[i].Relations = relative + ': ' + name;
       i++;
       if (i === Object.keys(this.relations).length) {
         console.table(table);
