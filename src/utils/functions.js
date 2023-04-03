@@ -38,24 +38,24 @@ const level = {
 
 const show = {
 
-  tree(key) {
+  tree(key, tree) {
     if (!key) {
-      SHOW_KEYS.tree['-m']();
+      SHOW_KEYS.tree['-m'](tree);
       return;
     }
     const command = SHOW_KEYS.tree[key];
     if (!command) throw new Error(`Invalid key '${key}'`);
-    command();
+    command(tree);
   },
 
-  member(key) {
+  member(key, member) {
     if (!key) {
-      SHOW_KEYS.member['-r']();
+      SHOW_KEYS.member['-r'](member);
       return;
     }
     const command = SHOW_KEYS.member[key];
     if (!command) throw new Error(`Invalid key '${key}'`);
-    command();
+    command(member);
   }
 
 };
