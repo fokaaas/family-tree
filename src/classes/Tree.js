@@ -20,6 +20,15 @@ class Tree {
     this.root = member;
   }
 
+  commonInfo() {
+    const table = [{}, {}];
+    const hedaer = 'Name / Root';
+    const rootName = this.root.name;
+    table[0][hedaer] = this.name;
+    table[1][hedaer] = rootName.first + ' ' + rootName.last;
+    return table;
+  }
+
   static create(name, rootName, rootBirth) {
     const root = new Member(rootName, rootBirth);
     const tree = new Tree(name, root);
