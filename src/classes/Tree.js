@@ -73,6 +73,14 @@ class Tree {
     }
     throw new Error('The specified person was not found.');
   }
+
+  showTotal() {
+    const info = this.commonInfo();
+    const table = [...info];
+    const total = this.members.length;
+    table[0].Total = total;
+    console.table(table);
+  }
 }
 
 module.exports = { Tree };
