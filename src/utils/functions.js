@@ -1,6 +1,6 @@
 'use strict';
 
-const { LEVELS, RELATIONS } = require('./collections.js');
+const { LEVELS, SHOW_KEYS, RELATIONS } = require('./collections.js');
 
 const level = {
 
@@ -36,6 +36,30 @@ const level = {
 
 };
 
+const show = {
+
+  tree(key) {
+    if (!key) {
+      SHOW_KEYS.tree['-m']();
+      return;
+    }
+    const command = SHOW_KEYS.tree[key];
+    if (!command) throw new Error(`Invalid key '${key}'`);
+    command();
+  },
+
+  member(key) {
+    if (!key) {
+      SHOW_KEYS.member['-r']();
+      return;
+    }
+    const command = SHOW_KEYS.member[key];
+    if (!command) throw new Error(`Invalid key '${key}'`);
+    command();
+  }
+
+};
+
 const logRelation = () => {
   RELATIONS.map((relation, i) => {
     const row = `${i}: ${relation}`;
@@ -44,4 +68,4 @@ const logRelation = () => {
   return (i) => RELATIONS[i];
 };
 
-module.exports = [ level, logRelation ];
+module.exports = [ level, show, logRelation ];
