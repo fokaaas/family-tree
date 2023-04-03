@@ -6,6 +6,19 @@ const LEVELS = [
   { name: 'member', pattern: (tree, person) => `${tree} (${person})> ` },
 ];
 
+const SHOW_KEYS = {
+  tree: {
+    '-m': (tree) => tree.showMembers(),
+    '-t': (tree) => tree.showTotal(),
+  },
+  member: {
+    '-e': (mem) => mem.showEvents(),
+    '-r': (mem) => mem.showRelations(),
+    '-c': (mem) => mem.showContacts(),
+    '-d': (mem) => mem.showDescription(),
+  }
+};
+
 const RELATIONS = [
   'mother',
   'father',
@@ -19,4 +32,4 @@ const RELATIONS = [
   'aunt',
 ];
 
-module.exports = { LEVELS, RELATIONS };
+module.exports = { LEVELS, SHOW_KEYS, RELATIONS };
