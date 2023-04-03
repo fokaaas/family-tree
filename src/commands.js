@@ -1,7 +1,7 @@
 'use strict';
 
 const readlinePromises = require('node:readline/promises');
-const [ level, logRelation ] = require('./utils/functions.js');
+const [ level, show, logRelation ] = require('./utils/functions.js');
 const { Tree } = require('./classes/Tree.js');
 
 const rl = readlinePromises.createInterface({
@@ -62,6 +62,11 @@ const commands = {
       tree.changeRoot(name);
       rl.prompt();
     },
+    async show(key) {
+      const tree = state.tree;
+      show.tree(key, tree);
+      rl.prompt();
+    },
   },
 
   member: {
@@ -100,6 +105,11 @@ const commands = {
       relative.relate(type(from), state.member);
       rl.prompt();
     },
+    async show(key) {
+      const member = state.member;
+      show.member(key, member);
+      rl.prompt();
+    },
   },
 
 };
@@ -108,7 +118,7 @@ const activate = (line) => {
   const [ name, key ] = line.split(' ');
   const current = commands[state.level];
   const command = current[name.trim()];
-  command(key.trim());
+  key ? command(key.trim()) : command();
 };
 
 module.exports = { rl, activate };
