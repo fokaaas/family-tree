@@ -104,9 +104,11 @@ const commands = {
 
 };
 
-const activate = (name) => {
+const activate = (line) => {
+  const [ name, key ] = line.split(' ');
   const current = commands[state.level];
-  current[name]();
+  const command = current[name.trim()];
+  command(key.trim());
 };
 
 module.exports = { rl, activate };
