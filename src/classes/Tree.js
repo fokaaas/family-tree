@@ -42,7 +42,7 @@ class Tree {
     return criterion === full;
   }
 
-  member(fullName) {
+  async member(fullName) {
     const [first, last] = fullName.split(' ');
     for (const member of this.members) {
       const name = member.name;
@@ -57,7 +57,7 @@ class Tree {
     this.name = name;
   }
 
-  removeMember(fullName) {
+  async removeMember(fullName) {
     if (this.isRoot(fullName)) {
       throw new Error('You cannot remove the root of a tree.');
     }
