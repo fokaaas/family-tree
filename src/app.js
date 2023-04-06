@@ -8,6 +8,7 @@ rl.on('line', (command) => {
   try {
     activate(command);
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
+    rl.prompt();
   }
 });

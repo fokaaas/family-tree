@@ -41,13 +41,14 @@ const commands = {
     async member() {
       const name = await rl.question('A family member\'s full name: ');
       const tree = state.tree;
-      state.member = tree.member(name);
-      state.level = level.down(rl, state);
+      state.member = await tree.member(name).catch((err) => console.log(err.message));
+      if (state.member) state.level = level.down(rl, state);
+      rl.prompt();
     },
     async remove() {
       const name = await rl.question('A family member\'s full name: ');
       const tree = state.tree;
-      tree.removeMember(name);
+      await tree.removeMember(name).catch((err) => console.log(err.message));
       rl.prompt();
     },
     async rename() {
@@ -95,8 +96,10 @@ const commands = {
     },
     async relate() {
       const name = await rl.question('The full name of the relative: ');
+      const tree = state.tree;
+      const relative = await tree.member(name).catch((err) => console.log(err.message));
+      if (!relative) return;
       const type = logRelation();
-      const relative = state.tree.member(name);
       const to = await rl
         .question(`The num of relation that ${name} has with current person: `);
       const from = await rl
@@ -118,7 +121,12 @@ const activate = (line) => {
   const [ name, key ] = line.split(' ');
   const current = commands[state.level];
   const command = current[name.trim()];
-  key ? command(key.trim()) : command();
+  if (!command) throw new Error('Invalid command');
+  try {
+    key ? command(key.trim()) : command();
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
 module.exports = { rl, activate };
