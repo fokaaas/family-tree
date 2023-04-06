@@ -1,7 +1,8 @@
 'use strict';
 
-const { rl, activate } = require('./commands.js');
+const { rl, start, activate } = require('./commands.js');
 
+start();
 rl.prompt();
 
 rl.on('line', (command) => {

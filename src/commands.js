@@ -117,16 +117,17 @@ const commands = {
 
 };
 
+const start = () => {
+  console.log('Hello! Welcome to Family Tree app.');
+  console.log('Type `help` to see commands\n');
+};
+
 const activate = (line) => {
   const [ name, key ] = line.split(' ');
   const current = commands[state.level];
   const command = current[name.trim()];
   if (!command) throw new Error('Invalid command');
-  try {
-    key ? command(key.trim()) : command();
-  } catch (err) {
-    console.log(err.message);
-  }
+  key ? command(key.trim()) : command();
 };
 
-module.exports = { rl, activate };
+module.exports = { rl, start, activate };
