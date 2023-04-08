@@ -1,0 +1,13 @@
+These are tree commands:
+
+    add     Add a new tree member
+    exit    Return to common level
+    help    Show available commands
+    member  Select a family member to configure
+    rename  Rename the tree
+    root    Change the root member of the tree
+    remove  Remove a family member
+    show    [-m]    Show all family members
+            [-t]    Show the total number of family tree members
+
+More commands will be provided soon. Stay tuned for updates.
