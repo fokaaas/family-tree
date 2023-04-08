@@ -1,5 +1,6 @@
 These are common commands:
 
+    about   Show app info (Recommended)
     create  Creation and initialization of a new family tree
     exit    Exit the Family Tree app
     help    Show available commands
