@@ -7,7 +7,7 @@ These are tree commands:
     rename  Rename the tree
     root    Change the root member of the tree
     remove  Remove a family member
-    show    [-m]    Show all family members
+    show    [-m]    Show all family members (Default)
             [-t]    Show the total number of family tree members
 
 More commands will be provided soon. Stay tuned for updates.

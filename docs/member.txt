@@ -6,7 +6,7 @@ These are member commands:
     exit        Return to tree level
     help        Show available commands
     relate      Add a family relation with a member of the family tree
-    show        [-e]    Show all events of the current member
+    show        [-e]    Show all events of the current member (Default)
                 [-r]    Show all relations of the current member
                 [-c]    Show all contacts of the current member
                 [-d]    Show description of the current member
