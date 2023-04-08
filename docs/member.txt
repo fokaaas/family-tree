@@ -1,0 +1,14 @@
+These are member commands:
+
+    contact     Add a new contact for a family tree member
+    describe    Add a description to the current member
+    event       Add a new event by year
+    exit        Return to tree level
+    help        Show available commands
+    relate      Add a family relation with a member of the family tree
+    show        [-e]    Show all events of the current member
+                [-r]    Show all relations of the current member
+                [-c]    Show all contacts of the current member
+                [-d]    Show description of the current member
+
+More commands will be provided soon. Stay tuned for updates.
