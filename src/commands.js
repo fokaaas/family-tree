@@ -17,6 +17,11 @@ const commands = {
 
   common: {
 
+    async about() {
+      await logInfo('about');
+      rl.prompt();
+    },
+
     async create() {
       const name = await rl.question('A name for your tree: ');
       const rootName = await rl.question('The full name of root person: ');
