@@ -2,6 +2,7 @@
 
 const readlinePromises = require('node:readline/promises');
 const [ level, show, logRelation ] = require('./utils/functions.js');
+const { logInfo } = require('./utils/file-system.js');
 const { Tree } = require('./classes/Tree.js');
 
 const rl = readlinePromises.createInterface({
@@ -26,7 +27,12 @@ const commands = {
 
     async exit() {
       rl.close();
-    }
+    },
+
+    async help() {
+      await logInfo(state.level);
+      rl.prompt();
+    },
 
   },
 
@@ -42,6 +48,11 @@ const commands = {
 
     async exit() {
       state.level = level.up(rl, state);
+    },
+
+    async help() {
+      await logInfo(state.level);
+      rl.prompt();
     },
 
     async member() {
@@ -108,6 +119,11 @@ const commands = {
 
     async exit() {
       state.level = level.up(rl, state);
+    },
+
+    async help() {
+      await logInfo(state.level);
+      rl.prompt();
     },
 
     async relate() {
