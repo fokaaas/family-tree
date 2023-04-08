@@ -9,3 +9,9 @@ const PATH = {
   tree: '../../docs/tree.txt',
   member: '../../docs/member.txt',
 };
+
+const getInfo = (name) => fs.readFile(path.resolve(__dirname, PATH[name]), 'utf-8')
+  .then((text) => console.log(text))
+  .catch((err) => console.log(err.message));
+
+module.exports = { getInfo };
