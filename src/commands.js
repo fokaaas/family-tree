@@ -15,6 +15,7 @@ const state = { level: 'common' };
 const commands = {
 
   common: {
+
     async create() {
       const name = await rl.question('A name for your tree: ');
       const rootName = await rl.question('The full name of root person: ');
@@ -22,12 +23,15 @@ const commands = {
       state.tree = Tree.create(name, rootName, rootBirth);
       state.level = level.down(rl, state);
     },
+
     async exit() {
       rl.close();
     }
+
   },
 
   tree: {
+
     async add() {
       const name = await rl.question('The full name of the new family member: ');
       const birth = await rl.question(`The year of birth of ${name}: `);
@@ -35,9 +39,11 @@ const commands = {
       tree.addMember(name, birth);
       rl.prompt();
     },
+
     async exit() {
       state.level = level.up(rl, state);
     },
+
     async member() {
       const name = await rl.question('A family member\'s full name: ');
       const tree = state.tree;
@@ -45,32 +51,38 @@ const commands = {
       if (state.member) state.level = level.down(rl, state);
       rl.prompt();
     },
+
     async remove() {
       const name = await rl.question('A family member\'s full name: ');
       const tree = state.tree;
       await tree.removeMember(name).catch((err) => console.log(err.message));
       rl.prompt();
     },
+
     async rename() {
       const name = await rl.question('New tree name: ');
       const tree = state.tree;
       tree.rename(name);
       rl.prompt();
     },
+
     async root() {
       const name = await rl.question('Full name of the new root: ');
       const tree = state.tree;
       tree.changeRoot(name);
       rl.prompt();
     },
+
     async show(key) {
       const tree = state.tree;
       show.tree(key, tree);
       rl.prompt();
     },
+
   },
 
   member: {
+
     async contact() {
       const type = await rl.question('Contact type: ');
       const contact = await rl.question('Contact: ');
@@ -78,6 +90,14 @@ const commands = {
       member.addContact(type, contact);
       rl.prompt();
     },
+
+    async describe() {
+      const text = await rl.question('Description: ');
+      const member = state.member;
+      member.describe(text);
+      rl.prompt();
+    },
+
     async event() {
       const year = await rl.question('The year of the event: ');
       const event = await rl.question('Description of the event: ');
@@ -85,34 +105,30 @@ const commands = {
       member.addEvent(year, event);
       rl.prompt();
     },
+
     async exit() {
       state.level = level.up(rl, state);
     },
-    async describe() {
-      const text = await rl.question('Description: ');
-      const member = state.member;
-      member.describe(text);
-      rl.prompt();
-    },
+
     async relate() {
       const name = await rl.question('The full name of the relative: ');
       const tree = state.tree;
       const relative = await tree.member(name).catch((err) => console.log(err.message));
       if (!relative) return;
       const type = logRelation();
-      const to = await rl
-        .question(`The num of relation that ${name} has with current person: `);
-      const from = await rl
-        .question(`The num of relation that current person has with ${name}: `);
+      const to = await rl.question(`Relation => ${name} to current person [num]: `);
+      const from = await rl.question(`Relation => current person to ${name} [num]: `);
       state.member.relate(type(to), relative);
       relative.relate(type(from), state.member);
       rl.prompt();
     },
+
     async show(key) {
       const member = state.member;
       show.member(key, member);
       rl.prompt();
     },
+
   },
 
 };
