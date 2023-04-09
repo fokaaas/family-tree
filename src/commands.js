@@ -1,7 +1,7 @@
 'use strict';
 
 const readlinePromises = require('node:readline/promises');
-const [ level, show, logRelation ] = require('./utils/functions.js');
+const [ level, show, log, logRelation ] = require('./utils/functions.js');
 const { logInfo } = require('./utils/file-system.js');
 const { Tree } = require('./classes/Tree.js');
 
@@ -63,7 +63,7 @@ const commands = {
     async member() {
       const name = await rl.question('A family member\'s full name: ');
       const tree = state.tree;
-      state.member = await tree.member(name).catch((err) => console.log(err.message));
+      state.member = await tree.member(name).catch((err) => log.error(err.message));
       if (state.member) state.level = level.down(rl, state);
       rl.prompt();
     },
@@ -71,7 +71,7 @@ const commands = {
     async remove() {
       const name = await rl.question('A family member\'s full name: ');
       const tree = state.tree;
-      await tree.removeMember(name).catch((err) => console.log(err.message));
+      await tree.removeMember(name).catch((err) => log.error(err.message));
       rl.prompt();
     },
 
@@ -91,7 +91,7 @@ const commands = {
 
     async show(key) {
       const tree = state.tree;
-      await show.tree(key, tree).catch((err) => console.log(err.message));
+      await show.tree(key, tree).catch((err) => log.error(err.message));
       rl.prompt();
     },
 
@@ -142,14 +142,14 @@ const commands = {
         state.member.relate(type(to), relative);
         relative.relate(type(from), state.member);
       } catch (err) {
-        console.log(err.message);
+        log.error(err.message);
       }
       rl.prompt();
     },
 
     async show(key) {
       const member = state.member;
-      await show.member(key, member).catch((err) => console.log(err.message));
+      await show.member(key, member).catch((err) => log.error(err.message));
       rl.prompt();
     },
 
@@ -158,8 +158,8 @@ const commands = {
 };
 
 const start = () => {
-  console.log('Hello! Welcome to Family Tree app.');
-  console.log('Type `help` to see commands\n');
+  log.info('\x1BcHello! Welcome to Family Tree app.');
+  log.info('Type `help` to see commands\n');
 };
 
 const activate = (line) => {
@@ -170,4 +170,4 @@ const activate = (line) => {
   key ? command(key.trim()) : command();
 };
 
-module.exports = { rl, start, activate };
+module.exports = { rl, log, start, activate };
