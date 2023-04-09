@@ -32,4 +32,11 @@ const RELATIONS = [
   'aunt',
 ];
 
-module.exports = { LEVELS, SHOW_KEYS, RELATIONS };
+const COLORS = {
+  default: '\x1b[0m',
+  red: '\x1b[31;1m',
+  green: '\x1b[32;1m',
+  white: '\x1b[97;1m',
+};
+
+module.exports = { LEVELS, SHOW_KEYS, RELATIONS, COLORS };
