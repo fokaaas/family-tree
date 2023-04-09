@@ -1,6 +1,6 @@
 'use strict';
 
-const { LEVELS, SHOW_KEYS, RELATIONS } = require('./collections.js');
+const { LEVELS, SHOW_KEYS, RELATIONS, COLORS } = require('./collections.js');
 
 const level = {
 
@@ -60,6 +60,21 @@ const show = {
 
 };
 
+const log = {
+  error(str) {
+    const text = COLORS.red + str + COLORS.default;
+    console.log(text);
+  },
+  success(str) {
+    const text = COLORS.green + str + COLORS.default;
+    console.log(text);
+  },
+  info(str) {
+    const text = COLORS.white + str + COLORS.default;
+    console.log(text);
+  },
+};
+
 const logRelation = () => {
   RELATIONS.map((relation, i) => {
     const row = `${i}: ${relation}`;
@@ -71,4 +86,4 @@ const logRelation = () => {
   };
 };
 
-module.exports = [ level, show, logRelation ];
+module.exports = [ level, show, log, logRelation ];
