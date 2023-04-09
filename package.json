@@ -4,7 +4,7 @@
   "description": "A console application for creating and managing family trees. Coursework.",
   "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
