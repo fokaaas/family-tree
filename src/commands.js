@@ -91,7 +91,7 @@ const commands = {
 
     async show(key) {
       const tree = state.tree;
-      show.tree(key, tree);
+      await show.tree(key, tree).catch((err) => console.log(err.message));
       rl.prompt();
     },
 
@@ -134,19 +134,22 @@ const commands = {
     async relate() {
       const name = await rl.question('The full name of the relative: ');
       const tree = state.tree;
-      const relative = await tree.member(name).catch((err) => console.log(err.message));
-      if (!relative) return;
-      const type = logRelation();
-      const to = await rl.question(`Relation => ${name} to current person [num]: `);
-      const from = await rl.question(`Relation => current person to ${name} [num]: `);
-      state.member.relate(type(to), relative);
-      relative.relate(type(from), state.member);
+      try {
+        const relative = await tree.member(name);
+        const type = logRelation();
+        const to = await rl.question(`Relation => ${name} to current person [num]: `);
+        const from = await rl.question(`Relation => current person to ${name} [num]: `);
+        state.member.relate(type(to), relative);
+        relative.relate(type(from), state.member);
+      } catch (err) {
+        console.log(err.message);
+      }
       rl.prompt();
     },
 
     async show(key) {
       const member = state.member;
-      show.member(key, member);
+      await show.member(key, member).catch((err) => console.log(err.message));
       rl.prompt();
     },
 

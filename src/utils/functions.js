@@ -38,7 +38,7 @@ const level = {
 
 const show = {
 
-  tree(key, tree) {
+  async tree(key, tree) {
     if (!key) {
       SHOW_KEYS.tree['-m'](tree);
       return;
@@ -48,7 +48,7 @@ const show = {
     command(tree);
   },
 
-  member(key, member) {
+  async member(key, member) {
     if (!key) {
       SHOW_KEYS.member['-r'](member);
       return;
@@ -65,7 +65,10 @@ const logRelation = () => {
     const row = `${i}: ${relation}`;
     console.log(row);
   });
-  return (i) => RELATIONS[i];
+  return (i) => {
+    if (!RELATIONS[i]) throw new Error('Invalid number');
+    return RELATIONS[i];
+  };
 };
 
 module.exports = [ level, show, logRelation ];
