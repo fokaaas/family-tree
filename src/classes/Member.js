@@ -26,9 +26,10 @@ class Member {
     events[year].push(description);
   }
 
-  checker(target, name) {
-    if (Object.keys(target).length) return 1;
-    console.log(`No ${name} were found`);
+  _checker(target, name) {
+    const length = Object.keys(target).length;
+    if (!length) console.log(`No ${name} were found`);
+    return length;
   }
 
   commonInfo() {
@@ -109,7 +110,7 @@ class Member {
   }
 
   showRelations() {
-    if (!this.checker(this.relations, 'relations')) return;
+    if (!this._checker(this.relations, 'relations')) return;
     const info = this.commonInfo();
     const table = [...info];
     let i = 0;
