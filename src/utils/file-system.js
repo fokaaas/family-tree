@@ -1,9 +1,7 @@
 'use strict';
 
-const fs = require('node:fs');
-const fsPromises = require('node:fs/promises');
+const fs = require('node:fs/promises');
 const path = require('node:path');
-const { Tree } = require('../classes/Tree.js');
 
 const PATH = {
   about: '../../docs/about.txt',
@@ -12,12 +10,7 @@ const PATH = {
   member: '../../docs/member.txt',
 };
 
-const fileState = {
-  directory: '../../saved',
-  current: '',
-};
-
-const logInfo = (name) => fsPromises
+const logInfo = (name) => fs
   .readFile(path.resolve(__dirname, PATH[name]), 'utf-8')
   .then((text) => console.log(text))
   .catch((err) => console.log(err.message));
@@ -25,13 +18,14 @@ const logInfo = (name) => fsPromises
 const serialize = async (name, target) => {
   const fileName = `${name}.json`;
   const content = JSON.stringify(target);
-  await fsPromises.writeFile('../../saved/' + fileName, content);
+  await fs.writeFile('../../saved/' + fileName, content);
 };
 
-const tree = Tree.create('Basarab Family', 'Stanislav Basarab', 2005);
-tree.addMember('Anastasia Basarab', 2009);
-tree.addMember('Anatoliy Basarab', 1978);
-serialize('my-tree', tree);
+const deserialize = async (name) => {
+  const fileName = name.includes('.') ? name : `${name}.json`;
+  const content = await fs.readFile('../../saved/' + fileName, 'utf-8');
+  const tree = JSON.parse(content);
+  console.dir(tree);
+};
 
-
-module.exports = { logInfo };
+module.exports = { logInfo, serialize, deserialize };
