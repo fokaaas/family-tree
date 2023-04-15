@@ -15,9 +15,35 @@ const logInfo = (name) => fs
   .then((text) => console.log(text))
   .catch((err) => console.log(err.message));
 
+const parseMember = (member) => {
+  const name = member.name;
+  return `${name.first} ${name.last}`;
+};
+
+const parseRelations = (member) => {
+  const relations = member.relations;
+  for (const type in relations) {
+    if (type === 'siblings') {
+      const siblings = relations[type];
+      relations[type] = siblings.map((mem) => parseMember(mem));
+    } else {
+      const member = relations[type];
+      relations[type] = parseMember(member);
+    }
+  }
+  return relations;
+};
+
+const toUncircular = (target) => {
+  const members = target.members;
+  target.members = members.map((mem) => parseRelations(mem));
+  return target;
+};
+
 const serialize = async (name, target) => {
   const fileName = `${name}.json`;
-  const content = JSON.stringify(target);
+  const tree = toUncircular(target);
+  const content = JSON.stringify(tree);
   await fs.writeFile('../../saved/' + fileName, content);
 };
 
@@ -25,7 +51,7 @@ const deserialize = async (name) => {
   const fileName = name.includes('.') ? name : `${name}.json`;
   const content = await fs.readFile('../../saved/' + fileName, 'utf-8');
   const tree = JSON.parse(content);
-  console.dir(tree);
+  return tree;
 };
 
 module.exports = { logInfo, serialize, deserialize };
