@@ -158,7 +158,8 @@ const commands = {
 };
 
 const start = () => {
-  log.info('\x1BcHello! Welcome to Family Tree app.');
+  console.clear();
+  log.info('Hello! Welcome to Family Tree app.');
   log.info('Type `help` to see commands\n');
 };
 
