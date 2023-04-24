@@ -3,11 +3,10 @@
 const generateId = () => Math.floor(Math.random() * 1000000);
 
 class Member {
-  constructor(fullName, birth) {
-    const [ first, last ] = fullName.split(' ');
+  constructor(firstName, lastName) {
     this.id = generateId();
-    this.name = { first, last };
-    this.events = { [birth]: ['Birth'] };
+    this.name = { first: firstName, last: lastName };
+    this.events = {};
     this.relations = {};
     this.contacts = {};
   }
@@ -26,17 +25,10 @@ class Member {
     events[year].push(description);
   }
 
-  _checker(target, name) {
-    const length = Object.keys(target).length;
-    if (!length) console.log(`No ${name} were found`);
-    return length;
-  }
-
-  commonInfo() {
+  commonInfoTable() {
     const table = [{}, {}];
     const header = 'Full Name / ID';
-    const name = this.name;
-    table[0][header] = name.first + ' ' + name.last;
+    table[0][header] = this.fullName();
     table[1][header] = this.id;
     return table;
   }
@@ -45,17 +37,18 @@ class Member {
     this.description = content;
   }
 
+  fullName() {
+    const name = this.name;
+    return `${name.first} ${name.last}`;
+  }
+
   relate(type, relative) {
     const relations = this.relations;
-    if (type === 'brother' || type === 'sister') {
-      if (!relations.siblings) {
-        relations.siblings = [relative];
-        return;
-      }
-      relations.siblings.push(relative);
+    if (!relations[type]) {
+      relations[type] = [relative];
       return;
     }
-    relations[type] = relative;
+    relations[type].push(relative);
   }
 
   rename(fullName) {
@@ -64,70 +57,54 @@ class Member {
   }
 
   showContacts() {
-    if (!this.checker(this.contacts, 'contacts')) return;
-    const info = this.commonInfo();
+    if (!Object.keys(this.contacts).length) return;
+    const info = this.commonInfoTable();
     const table = [...info];
-    let i = 0;
+    let row = 0;
     for (const type in this.contacts) {
-      if (!table[i]) table.push({});
+      if (!table[row]) table.push({});
       const contact = this.contacts[type];
-      const row = type + ': ' + contact;
-      table[i].Contacts = row;
-      i++;
-      if (i === Object.keys(this.events).length) {
-        console.table(table);
-        return;
-      }
+      table[row].Contacts = `${type}: ${contact}`;
+      row++;
     }
+    console.table(table);
   }
 
   showDescription() {
-    if (!this.description) {
-      console.log('No description were found');
-      return;
-    }
-    const info = this.commonInfo();
+    if (!Object.keys(this.description).length) return;
+    const info = this.commonInfoTable();
     const table = [...info];
     table[0].Description = this.description;
     console.table(table);
   }
 
   showEvents() {
-    const info = this.commonInfo();
+    if (!Object.keys(this.events).length) return;
+    const info = this.commonInfoTable();
     const table = [...info];
-    let i = 0;
+    let row = 0;
     for (const year in this.events) {
-      if (!table[i]) table.push({});
+      if (!table[row]) table.push({});
       const events = this.events[year].join(', ');
-      const row = year + ': ' + events;
-      table[i].Events = row;
-      i++;
-      if (i === Object.keys(this.events).length) {
-        console.table(table);
-        return;
-      }
+      table[row].Events = `${year}: ${events}`;
+      row++;
     }
+    console.table(table);
   }
 
   showRelations() {
-    if (!this._checker(this.relations, 'relations')) return;
-    const info = this.commonInfo();
+    if (!Object.keys(this.relations).length) return;
+    const info = this.commonInfoTable();
     const table = [...info];
-    let i = 0;
+    let row = 0;
     for (const relative in this.relations) {
-      if (!table[i]) table.push({});
-      const member = this.relations[relative];
-      const name = relative === 'siblings' ?
-        member.map((person) => person.name.first + ' ' + person.name.last)
-          .join(', ') :
-        member.name.first + ' ' + member.name.last;
-      table[i].Relations = relative + ': ' + name;
-      i++;
-      if (i === Object.keys(this.relations).length) {
-        console.table(table);
-        return;
-      }
+      if (!table[row]) table.push({});
+      const members = this.relations[relative];
+      const name = members.map((person) => person.fullName()).join(', ');
+      table[row].Relations = `${relative}: ${name}`;
+      row++;
     }
+    console.table(table);
   }
 }
 
