@@ -23,13 +23,8 @@ const parseMember = (member) => {
 const parseRelations = (member) => {
   const relations = member.relations;
   for (const type in relations) {
-    if (type === 'siblings') {
-      const siblings = relations[type];
-      relations[type] = siblings.map((mem) => parseMember(mem));
-    } else {
-      const member = relations[type];
-      relations[type] = parseMember(member);
-    }
+    const relatives = relations[type];
+    relations[type] = relatives.map((mem) => parseMember(mem));
   }
   return relations;
 };

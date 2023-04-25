@@ -21,7 +21,7 @@ const level = {
   down(rl, state) {
     const tree = state.tree;
     const person = state.member;
-    const name = person ? person.name.first + ' ' + person.name.last : '';
+    const name = person ? person.fullName() : '';
     for (let i = 0; i < LEVELS.length; i++) {
       const level = LEVELS[i];
       if (state.level === level.name) {
@@ -39,40 +39,38 @@ const level = {
 const show = {
 
   async tree(key, tree) {
-    if (!key) {
-      SHOW_KEYS.tree['-m'](tree);
-      return;
-    }
-    const command = SHOW_KEYS.tree[key];
-    if (!command) throw new Error(`Invalid key '${key}'`);
+    const flag = key ? key : '-m';
+    const command = SHOW_KEYS.tree[flag];
+    if (!command) throw new Error(`Invalid key '${flag}'`);
     command(tree);
   },
 
   async member(key, member) {
-    if (!key) {
-      SHOW_KEYS.member['-r'](member);
-      return;
-    }
-    const command = SHOW_KEYS.member[key];
-    if (!command) throw new Error(`Invalid key '${key}'`);
+    const flag = key ? key : '-r';
+    const command = SHOW_KEYS.member[flag];
+    if (!command) throw new Error(`Invalid key '${flag}'`);
     command(member);
-  }
+  },
 
 };
 
 const log = {
+
   error(str) {
     const text = COLORS.red + str + COLORS.default;
     console.log(text);
   },
+
   success(str) {
     const text = COLORS.green + str + COLORS.default;
     console.log(text);
   },
+
   info(str) {
     const text = COLORS.white + str + COLORS.default;
     console.log(text);
   },
+
 };
 
 const logRelation = () => {
