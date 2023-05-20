@@ -153,6 +153,15 @@ const commands = {
       rl.prompt();
     },
 
+    async unrelate() {
+      const name = await rl.question('Unrelate person [full name]: ');
+      const tree = state.tree;
+      const member = state.member;
+      const relative = await tree.member(name).catch((err) => log.error(err.message));
+      tree.unrelatePair(member, relative);
+      rl.prompt();
+    }
+
   },
 
 };

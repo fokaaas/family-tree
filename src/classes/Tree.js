@@ -56,9 +56,11 @@ class Tree {
 
   async removeMember(fullName) {
     if (this.isRoot(fullName)) throw new Error('You cannot remove the root');
-    const member = this.member(fullName);
-    const i = this.members.indexOf(member);
-    return this.members.splice(i, 1);
+    const member = await this.member(fullName);
+    const relatives = Object.values(member.relations).flat();
+    relatives.map((relative) => this.unrelatePair(member, relative));
+    const index = this.members.indexOf(member);
+    return this.members.splice(index, 1);
   }
 
   showMembers() {
@@ -80,6 +82,11 @@ class Tree {
     const table = [...info];
     table[0].Total = this.members.length;
     console.table(table);
+  }
+
+  unrelatePair(first, second) {
+    first.unrelate(second);
+    second.unrelate(first);
   }
 }
 

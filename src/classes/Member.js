@@ -106,6 +106,19 @@ class Member {
     }
     console.table(table);
   }
+
+  unrelate(relative) {
+    const relations = this.relations;
+    for (const type in relations) {
+      const relatives = relations[type];
+      if (relatives.includes(relative)) {
+        const index = relatives.indexOf(relative);
+        const unrelated = relatives.splice(index, 1);
+        if (!relatives.length) delete relations[type];
+        return unrelated;
+      }
+    }
+  }
 }
 
 module.exports = { Member };
