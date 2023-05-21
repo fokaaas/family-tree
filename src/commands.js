@@ -42,7 +42,7 @@ const commands = {
     async open() {
       const fileName = await rl.question('File Name: ');
       const tree = await deserialize(fileName);
-      console.log(Tree.parse(tree));
+      state.file = fileName;
       state.tree = Tree.parse(tree);
       state.level = level.down(rl, state);
     }
@@ -98,6 +98,14 @@ const commands = {
       const name = await rl.question('Change root [full name]: ');
       const tree = state.tree;
       tree.changeRoot(name);
+      rl.prompt();
+    },
+
+    async save() {
+      const tree = state.tree;
+      if (!state.file) state.file = await rl.question('New file name: ');
+      await serialize(state.file, tree);
+      log.success('Successfully saved!');
       rl.prompt();
     },
 
