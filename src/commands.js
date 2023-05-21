@@ -41,10 +41,12 @@ const commands = {
 
     async open() {
       const fileName = await rl.question('File Name: ');
-      const tree = await deserialize(fileName);
-      state.file = fileName;
-      state.tree = Tree.parse(tree);
-      state.level = level.down(rl, state);
+      await deserialize(fileName).then((tree) => {
+        state.file = fileName;
+        state.tree = Tree.parse(tree);
+        state.level = level.down(rl, state);
+      }).catch((err) => log.error(err.message));
+      rl.prompt();
     }
 
   },
@@ -60,6 +62,13 @@ const commands = {
     },
 
     async exit() {
+      const res = await rl.question('Do you want to save tree before leaving? [y/n]: ');
+      if (res.trim() !== 'n') {
+        const tree = state.tree;
+        if (!state.file) state.file = await rl.question('New file name: ');
+        await serialize(state.file, tree);
+        log.success('Successfully saved!');
+      }
       state.level = level.up(rl, state);
     },
 
