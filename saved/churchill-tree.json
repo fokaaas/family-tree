@@ -1,0 +1,237 @@
+{
+  "name": "Churchill Tree",
+  "root": {
+    "id": 176362,
+    "name": {
+      "first": "Winston",
+      "last": "Churchill"
+    },
+    "events": {
+      "1874": [
+        "Birth"
+      ],
+      "1940": [
+        "61st Prime Minister of Great Britain"
+      ],
+      "1951": [
+        "63rd Prime Minister of Great Britain",
+        "Minister of Defense of Great Britain"
+      ],
+      "1965": [
+        "Death"
+      ]
+    },
+    "relations": {
+      "wife": [
+        "Clementine Churchill"
+      ],
+      "son": [
+        "Randolph Churchill"
+      ],
+      "daughter": [
+        "Diana Churchill"
+      ],
+      "father": [
+        "Randolph Spencer-Churchill"
+      ],
+      "mother": [
+        "Jennie Spencer-Churchill"
+      ]
+    },
+    "contacts": {
+      "tel": "204-98-27"
+    },
+    "description": "One of the most famous politicians of all time, twice Prime Minister and an inspirational leader in time of war."
+  },
+  "members": [
+    {
+      "id": 176362,
+      "name": {
+        "first": "Winston",
+        "last": "Churchill"
+      },
+      "events": {
+        "1874": [
+          "Birth"
+        ],
+        "1940": [
+          "61st Prime Minister of Great Britain"
+        ],
+        "1951": [
+          "63rd Prime Minister of Great Britain",
+          "Minister of Defense of Great Britain"
+        ],
+        "1965": [
+          "Death"
+        ]
+      },
+      "relations": {
+        "wife": [
+          "Clementine Churchill"
+        ],
+        "son": [
+          "Randolph Churchill"
+        ],
+        "daughter": [
+          "Diana Churchill"
+        ],
+        "father": [
+          "Randolph Spencer-Churchill"
+        ],
+        "mother": [
+          "Jennie Spencer-Churchill"
+        ]
+      },
+      "contacts": {
+        "tel": "204-98-27"
+      },
+      "description": "One of the most famous politicians of all time, twice Prime Minister and an inspirational leader in time of war."
+    },
+    {
+      "id": 754328,
+      "name": {
+        "first": "Clementine",
+        "last": "Churchill"
+      },
+      "events": {
+        "1885": [
+          "Birth"
+        ],
+        "1977": [
+          "Death"
+        ]
+      },
+      "relations": {
+        "husband": [
+          "Winston Churchill"
+        ],
+        "son": [
+          "Randolph Churchill"
+        ],
+        "daughter": [
+          "Diana Churchill"
+        ]
+      },
+      "contacts": {
+        "email": "fiot@kpi.ua"
+      }
+    },
+    {
+      "id": 190225,
+      "name": {
+        "first": "Diana",
+        "last": "Churchill"
+      },
+      "events": {
+        "1909": [
+          "Birth"
+        ]
+      },
+      "relations": {
+        "brother": [
+          "Randolph Churchill"
+        ],
+        "father": [
+          "Winston Churchill"
+        ],
+        "mother": [
+          "Clementine Churchill"
+        ],
+        "grandfather": [
+          "Randolph Spencer-Churchill"
+        ],
+        "grandmother": [
+          "Jennie Spencer-Churchill"
+        ]
+      },
+      "contacts": {}
+    },
+    {
+      "id": 885929,
+      "name": {
+        "first": "Randolph",
+        "last": "Churchill"
+      },
+      "events": {
+        "1911": [
+          "Birth"
+        ]
+      },
+      "relations": {
+        "father": [
+          "Winston Churchill"
+        ],
+        "mother": [
+          "Clementine Churchill"
+        ],
+        "sister": [
+          "Diana Churchill"
+        ],
+        "grandfather": [
+          "Randolph Spencer-Churchill"
+        ],
+        "grandmother": [
+          "Jennie Spencer-Churchill"
+        ]
+      },
+      "contacts": {}
+    },
+    {
+      "id": 481180,
+      "name": {
+        "first": "Randolph",
+        "last": "Spencer-Churchill"
+      },
+      "events": {
+        "1886": [
+          "Birth"
+        ],
+        "1895": [
+          "Death"
+        ]
+      },
+      "relations": {
+        "wife": [
+          "Jennie Spencer-Churchill"
+        ],
+        "son": [
+          "Winston Churchill"
+        ],
+        "granddaughter": [
+          "Diana Churchill"
+        ],
+        "grandson": [
+          "Randolph Churchill"
+        ]
+      },
+      "contacts": {}
+    },
+    {
+      "id": 352260,
+      "name": {
+        "first": "Jennie",
+        "last": "Spencer-Churchill"
+      },
+      "events": {
+        "1854": [
+          "Birth"
+        ]
+      },
+      "relations": {
+        "husband": [
+          "Randolph Spencer-Churchill"
+        ],
+        "son": [
+          "Winston Churchill"
+        ],
+        "granddaughter": [
+          "Diana Churchill"
+        ],
+        "grandson": [
+          "Randolph Churchill"
+        ]
+      },
+      "contacts": {}
+    }
+  ]
+}
