@@ -22,12 +22,16 @@ const SHOW_KEYS = {
 const RELATIONS = [
   'mother',
   'father',
+  'wife',
+  'husband',
   'son',
   'daughter',
   'brother',
   'sister',
   'grandfather',
   'grandmother',
+  'grandson',
+  'granddaughter',
   'uncle',
   'aunt',
 ];
