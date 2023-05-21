@@ -10,5 +10,6 @@ These are member commands:
                 [-r]    Show all relations of the current member
                 [-c]    Show all contacts of the current member
                 [-d]    Show description of the current member
+    urelate     Remove a family relation with a member of the family tree
 
 More commands will be provided soon. Stay tuned for updates.
