@@ -43,11 +43,32 @@ class Tree {
     return criterion === fullName;
   }
 
-  async member(fullName) {
+  member(fullName) {
     const members = this.members;
     const member = members.find((member) => member.fullName() === fullName);
     if (member) return member;
     throw new Error('No person found');
+  }
+
+  static parse(target) {
+    const tree = new Tree();
+    Object.assign(tree, target);
+    const { first, last } = target.root.name;
+    tree.members = target.members.map(Member.parse);
+    tree.changeRoot(`${first} ${last}`);
+    tree.members.map((member) => {
+      member.relations = tree.parseRelations(member.relations);
+    });
+    return tree;
+  }
+
+  parseRelations(relations) {
+    const parsed = {};
+    for (const type in relations) {
+      const relatives = relations[type];
+      parsed[type] = relatives.map((name) => this.member(name));
+    }
+    return parsed;
   }
 
   rename(name) {
@@ -56,7 +77,7 @@ class Tree {
 
   async removeMember(fullName) {
     if (this.isRoot(fullName)) throw new Error('You cannot remove the root');
-    const member = await this.member(fullName);
+    const member = this.member(fullName);
     const relatives = Object.values(member.relations).flat();
     relatives.map((relative) => this.unrelatePair(member, relative));
     const index = this.members.indexOf(member);

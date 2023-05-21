@@ -2,7 +2,7 @@
 
 const readlinePromises = require('node:readline/promises');
 const [ level, show, log, logRelation ] = require('./utils/functions.js');
-const { logInfo } = require('./utils/file-system.js');
+const { logInfo, serialize, deserialize } = require('./utils/file-system.js');
 const { Tree } = require('./classes/Tree.js');
 
 const rl = readlinePromises.createInterface({
@@ -39,6 +39,14 @@ const commands = {
       rl.prompt();
     },
 
+    async open() {
+      const fileName = await rl.question('File Name: ');
+      const tree = await deserialize(fileName);
+      console.log(Tree.parse(tree));
+      state.tree = Tree.parse(tree);
+      state.level = level.down(rl, state);
+    }
+
   },
 
   tree: {
@@ -63,8 +71,12 @@ const commands = {
     async member() {
       const name = await rl.question('Choose member [full name]: ');
       const tree = state.tree;
-      state.member = await tree.member(name).catch((err) => log.error(err.message));
-      if (state.member) state.level = level.down(rl, state);
+      try {
+        state.member = tree.member(name);
+        state.level = level.down(rl, state);
+      } catch (err) {
+        log.error(err.message);
+      }
       rl.prompt();
     },
 
@@ -135,7 +147,7 @@ const commands = {
       const name = await rl.question('Relative full name: ');
       const tree = state.tree;
       try {
-        const relative = await tree.member(name);
+        const relative = tree.member(name);
         const type = logRelation();
         const to = await rl.question(`Relation => ${name} to current person [num]: `);
         const from = await rl.question(`Relation => current person to ${name} [num]: `);
@@ -157,8 +169,12 @@ const commands = {
       const name = await rl.question('Unrelate person [full name]: ');
       const tree = state.tree;
       const member = state.member;
-      const relative = await tree.member(name).catch((err) => log.error(err.message));
-      tree.unrelatePair(member, relative);
+      try {
+        const relative = tree.member(name);
+        tree.unrelatePair(member, relative);
+      } catch (err) {
+        log.error(err.message);
+      }
       rl.prompt();
     }
 

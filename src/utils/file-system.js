@@ -34,4 +34,11 @@ const serialize = async (name, tree) => {
   await fs.writeFile(path.resolve(PATHS.saved, fileName), content);
 };
 
-module.exports = { logInfo, serialize };
+const deserialize = async (name) => {
+  const fileName = name.includes('.json') ? name : `${name}.json`;
+  const content = await fs
+    .readFile(path.resolve(__dirname, PATHS.saved, fileName), 'utf-8');
+  return JSON.parse(content);
+};
+
+module.exports = { logInfo, serialize, deserialize };

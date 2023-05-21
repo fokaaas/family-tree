@@ -42,6 +42,12 @@ class Member {
     return `${name.first} ${name.last}`;
   }
 
+  static parse(target) {
+    const member = new Member();
+    Object.assign(member, target);
+    return member;
+  }
+
   relate(type, relative) {
     const relations = this.relations;
     if (!relations[type]) {
