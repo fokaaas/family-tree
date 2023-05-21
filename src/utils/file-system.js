@@ -29,7 +29,7 @@ const replacer = (key, value) => {
 };
 
 const serialize = async (name, tree) => {
-  const fileName = `${name}.json`;
+  const fileName = name.includes('.json') ? name : `${name}.json`;
   const content = JSON.stringify(tree, replacer);
   await fs.writeFile(path.resolve(__dirname, PATHS.saved, fileName), content);
 };
