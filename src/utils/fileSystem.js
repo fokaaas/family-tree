@@ -11,7 +11,7 @@ const PATHS = {
   saved: '../../saved/',
 };
 
-const logInfo = (name) => fs
+const logHelp = (name) => fs
   .readFile(path.resolve(__dirname, PATHS[name]), 'utf-8')
   .then((text) => console.log(text))
   .catch((err) => console.log(err.message));
@@ -41,4 +41,4 @@ const deserialize = async (name) => {
   return JSON.parse(content);
 };
 
-module.exports = { logInfo, serialize, deserialize };
+module.exports = { logHelp, serialize, deserialize };

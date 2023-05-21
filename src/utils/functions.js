@@ -84,4 +84,4 @@ const logRelation = () => {
   };
 };
 
-module.exports = [ level, show, log, logRelation ];
+module.exports = { level, show, log, logRelation };

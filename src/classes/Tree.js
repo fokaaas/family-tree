@@ -18,7 +18,7 @@ class Tree {
   }
 
   changeRoot(fullName) {
-    this.root = this.member(fullName);
+    this.root = this.getMember(fullName);
   }
 
   commonInfo() {
@@ -43,7 +43,7 @@ class Tree {
     return criterion === fullName;
   }
 
-  member(fullName) {
+  getMember(fullName) {
     const members = this.members;
     const member = members.find((member) => member.fullName() === fullName);
     if (member) return member;
@@ -66,7 +66,7 @@ class Tree {
     const parsed = {};
     for (const type in relations) {
       const relatives = relations[type];
-      parsed[type] = relatives.map((name) => this.member(name));
+      parsed[type] = relatives.map((name) => this.getMember(name));
     }
     return parsed;
   }
@@ -77,7 +77,7 @@ class Tree {
 
   async removeMember(fullName) {
     if (this.isRoot(fullName)) throw new Error('You cannot remove the root');
-    const member = this.member(fullName);
+    const member = this.getMember(fullName);
     const relatives = Object.values(member.relations).flat();
     relatives.map((relative) => this.unrelatePair(member, relative));
     const index = this.members.indexOf(member);

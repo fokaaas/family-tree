@@ -1,8 +1,8 @@
 'use strict';
 
 const readlinePromises = require('node:readline/promises');
-const [ level, show, log, logRelation ] = require('./utils/functions.js');
-const { logInfo, serialize, deserialize } = require('./utils/file-system.js');
+const { level, show, log, logRelation } = require('./utils/functions.js');
+const { logHelp, serialize, deserialize } = require('./utils/fileSystem.js');
 const { Tree } = require('./classes/Tree.js');
 
 const rl = readlinePromises.createInterface({
@@ -18,7 +18,7 @@ const commands = {
   common: {
 
     async about() {
-      await logInfo('about');
+      await logHelp('about');
       rl.prompt();
     },
 
@@ -35,7 +35,7 @@ const commands = {
     },
 
     async help() {
-      await logInfo(state.level);
+      await logHelp(state.level);
       rl.prompt();
     },
 
@@ -73,7 +73,7 @@ const commands = {
     },
 
     async help() {
-      await logInfo(state.level);
+      await logHelp(state.level);
       rl.prompt();
     },
 
@@ -81,7 +81,7 @@ const commands = {
       const name = await rl.question('Choose member [full name]: ');
       const tree = state.tree;
       try {
-        state.member = tree.member(name);
+        state.member = tree.getMember(name);
         state.level = level.down(rl, state);
       } catch (err) {
         log.error(err.message);
@@ -156,7 +156,7 @@ const commands = {
     },
 
     async help() {
-      await logInfo(state.level);
+      await logHelp(state.level);
       rl.prompt();
     },
 
@@ -164,7 +164,7 @@ const commands = {
       const name = await rl.question('Relative full name: ');
       const tree = state.tree;
       try {
-        const relative = tree.member(name);
+        const relative = tree.getMember(name);
         const type = logRelation();
         const to = await rl.question(`Relation => ${name} to current person [num]: `);
         const from = await rl.question(`Relation => current person to ${name} [num]: `);
@@ -187,7 +187,7 @@ const commands = {
       const tree = state.tree;
       const member = state.member;
       try {
-        const relative = tree.member(name);
+        const relative = tree.getMember(name);
         tree.unrelatePair(member, relative);
       } catch (err) {
         log.error(err.message);
