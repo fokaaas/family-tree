@@ -2,9 +2,10 @@
   "name": "family-tree",
   "version": "1.0.0",
   "description": "A console application for creating and managing family trees. Coursework.",
-  "main": "start.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "test": "node tests/test.js"
   },
   "repository": {
     "type": "git",
