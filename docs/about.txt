@@ -3,4 +3,4 @@ family tree. What could be more interesting than researching your genealogy?
 Ehh.. Are you still reading this? Type `help` and explore the app!
 
 Author/developer: Stanislav Basarab
-1st year student (2022/2023) FICE KPI
+1st year student [2022/2023] KPI FICE
