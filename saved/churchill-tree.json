@@ -23,19 +23,19 @@
     },
     "relations": {
       "wife": [
-        "Clementine Churchill"
+        754328
       ],
       "son": [
-        "Randolph Churchill"
+        885929
       ],
       "daughter": [
-        "Diana Churchill"
+        190225
       ],
       "father": [
-        "Randolph Spencer-Churchill"
+        481180
       ],
       "mother": [
-        "Jennie Spencer-Churchill"
+        352260
       ]
     },
     "contacts": {
@@ -67,19 +67,19 @@
       },
       "relations": {
         "wife": [
-          "Clementine Churchill"
+          754328
         ],
         "son": [
-          "Randolph Churchill"
+          885929
         ],
         "daughter": [
-          "Diana Churchill"
+          190225
         ],
         "father": [
-          "Randolph Spencer-Churchill"
+          481180
         ],
         "mother": [
-          "Jennie Spencer-Churchill"
+          352260
         ]
       },
       "contacts": {
@@ -103,13 +103,13 @@
       },
       "relations": {
         "husband": [
-          "Winston Churchill"
+          176362
         ],
         "son": [
-          "Randolph Churchill"
+          885929
         ],
         "daughter": [
-          "Diana Churchill"
+          190225
         ]
       },
       "contacts": {
@@ -129,19 +129,19 @@
       },
       "relations": {
         "brother": [
-          "Randolph Churchill"
+          885929
         ],
         "father": [
-          "Winston Churchill"
+          176362
         ],
         "mother": [
-          "Clementine Churchill"
+          754328
         ],
         "grandfather": [
-          "Randolph Spencer-Churchill"
+          481180
         ],
         "grandmother": [
-          "Jennie Spencer-Churchill"
+          352260
         ]
       },
       "contacts": {}
@@ -159,19 +159,19 @@
       },
       "relations": {
         "father": [
-          "Winston Churchill"
+          176362
         ],
         "mother": [
-          "Clementine Churchill"
+          754328
         ],
         "sister": [
-          "Diana Churchill"
+          190225
         ],
         "grandfather": [
-          "Randolph Spencer-Churchill"
+          481180
         ],
         "grandmother": [
-          "Jennie Spencer-Churchill"
+          352260
         ]
       },
       "contacts": {}
@@ -192,16 +192,16 @@
       },
       "relations": {
         "wife": [
-          "Jennie Spencer-Churchill"
+          352260
         ],
         "son": [
-          "Winston Churchill"
+          176362
         ],
         "granddaughter": [
-          "Diana Churchill"
+          190225
         ],
         "grandson": [
-          "Randolph Churchill"
+          885929
         ]
       },
       "contacts": {}
@@ -219,16 +219,16 @@
       },
       "relations": {
         "husband": [
-          "Randolph Spencer-Churchill"
+          481180
         ],
         "son": [
-          "Winston Churchill"
+          176362
         ],
         "granddaughter": [
-          "Diana Churchill"
+          190225
         ],
         "grandson": [
-          "Randolph Churchill"
+          885929
         ]
       },
       "contacts": {}

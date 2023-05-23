@@ -21,7 +21,7 @@ const replacer = (key, value) => {
     const members = {};
     for (const type in value) {
       const relatives = value[type];
-      members[type] = relatives.map((mem) => mem.fullName());
+      members[type] = relatives.map((mem) => mem.id);
     }
     return members;
   }

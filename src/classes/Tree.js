@@ -50,6 +50,11 @@ class Tree {
     throw new Error('No person found');
   }
 
+  getMemberById(id) {
+    const members = this.members;
+    return members.find((member) => member.id === id);
+  }
+
   static parse(target) {
     const tree = new Tree();
     Object.assign(tree, target);
@@ -66,7 +71,7 @@ class Tree {
     const parsed = {};
     for (const type in relations) {
       const relatives = relations[type];
-      parsed[type] = relatives.map((name) => this.getMember(name));
+      parsed[type] = relatives.map((id) => this.getMemberById(id));
     }
     return parsed;
   }
