@@ -1,10 +1,10 @@
 'use strict';
 
-const generateId = () => Math.floor(Math.random() * 1000000);
+const crypto = require('node:crypto');
 
 class Member {
   constructor(firstName, lastName) {
-    this.id = generateId();
+    this.id = crypto.randomUUID();
     this.name = { first: firstName, last: lastName };
     this.events = {};
     this.relations = {};

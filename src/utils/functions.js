@@ -39,14 +39,14 @@ const level = {
 const show = {
 
   async tree(key, tree) {
-    const flag = key ? key : '-m';
+    const flag = key ?? '-m';
     const command = SHOW_KEYS.tree[flag];
     if (!command) throw new Error(`Invalid key '${flag}'`);
     command(tree);
   },
 
   async member(key, member) {
-    const flag = key ? key : '-r';
+    const flag = key ?? '-r';
     const command = SHOW_KEYS.member[flag];
     if (!command) throw new Error(`Invalid key '${flag}'`);
     command(member);
@@ -74,7 +74,7 @@ const log = {
 };
 
 const logRelation = () => {
-  RELATIONS.map((relation, i) => {
+  RELATIONS.forEach((relation, i) => {
     const row = `${i}: ${relation}`;
     console.log(row);
   });

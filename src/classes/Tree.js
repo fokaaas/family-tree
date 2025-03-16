@@ -61,7 +61,7 @@ class Tree {
     const { first, last } = target.root.name;
     tree.members = target.members.map(Member.parse);
     tree.changeRoot(`${first} ${last}`);
-    tree.members.map((member) => {
+    tree.members.forEach((member) => {
       member.relations = tree.parseRelations(member.relations);
     });
     return tree;
