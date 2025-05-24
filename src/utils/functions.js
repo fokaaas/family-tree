@@ -74,7 +74,7 @@ const log = {
 };
 
 const logRelation = () => {
-  RELATIONS.forEach((relation, i) => {
+  RELATIONS.map((relation, i) => {
     const row = `${i}: ${relation}`;
     console.log(row);
   });
